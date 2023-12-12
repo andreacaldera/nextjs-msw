@@ -8,7 +8,8 @@ import { Provider } from "urql";
 export const client: ReturnType<typeof createClient> = createClient({
   url: "https://countries.trevorblades.com/",
   requestPolicy: "cache-and-network",
-  exchanges: [fetchExchange],
+  exchanges: [cacheExchange, fetchExchange],
+  fetchOptions: { headers: { accept: "*/*" } },
 });
 
 export const GraphqlPageProvider = ({ children }: { children: ReactNode }) => (
